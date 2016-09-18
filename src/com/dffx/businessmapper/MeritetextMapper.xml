@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.MeritetextMybatisDao">
+
+	<resultMap type="Meritetext" id="RM.Meritetext">
+		<result column="content" property="content" javaType="String" />
+		<result column="valid" property="valid" javaType="Integer" />
+		<result column="updatetime" property="updatetime" javaType="Date" />
+		<result column="createtime" property="createtime" javaType="Date" />
+	</resultMap>
+
+	<insert id="addEntity" parameterType="Meritetext">
+		insert into free_common_meritetext(content,valid,updatetime,createtime) values(#{content},#{valid},#{updatetime},#{createtime})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_common_meritetext set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Meritetext">
+		update free_common_meritetext set content=#{content},valid=#{valid},updatetime=#{updatetime},createtime=#{createtime} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Meritetext" resultMap="RM.Meritetext">
+		select content,valid,updatetime,createtim from free_common_meritetext
+	</select>
+
+	<select id="findEntityList" parameterType="PageModel" resultMap="RM.Meritetext">
+		select content,valid,updatetime,createtim from free_common_meritetext
+	</select>
+
+	<select id="getTextContent" parameterType="Meritetext" resultType="String">
+		select content from free_common_meritetext where valid = 1;
+	</select>
+
+
+</mapper>

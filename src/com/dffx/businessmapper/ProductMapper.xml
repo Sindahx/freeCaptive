@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.ProductMybatisDao">
+
+	<resultMap type="Product" id="RM.Product">
+		<result column="product_name" property="productName" javaType="String" />
+		<result column="product_price" property="productPrice" javaType="BigDecimal" />
+		<result column="product_unit" property="productUnit" javaType="String" />
+		<result column="product_pic" property="productPic" javaType="String" />
+		<result column="product_des_before" property="productDesBefore" javaType="String" />
+		<result column="product_des_after" property="productDesAfter" javaType="String" />
+	</resultMap>
+
+	<insert id="addEntity" parameterType="Product">
+		insert into free_common_product(productName,productPrice,productUnit,productPic,productDesBefore,productDesAfter) values(#{productName},#{productPrice},#{productUnit},#{productPic},#{productDesBefore},#{productDesAfter})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_common_product set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Product">
+		update free_common_product set product_name=#{productName},product_price=#{productPrice},product_unit=#{productUnit},product_pic=#{productPic},product_des_before=#{productDesBefore},product_des_after=#{productDesAfter} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Product" resultMap="RM.Product">
+		select id,product_name,product_price,product_unit,product_pic,product_des_before,product_des_after from free_common_product
+	</select>
+
+	<select id="findEntityList" parameterType="PageModel" resultMap="RM.Product">
+		select id,product_name,product_price,product_unit,product_pic,product_des_before,product_des_after from free_common_product
+	</select>
+
+
+</mapper>

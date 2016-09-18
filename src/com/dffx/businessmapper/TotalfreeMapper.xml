@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.TotalfreeMybatisDao">
+
+	<resultMap type="Totalfree" id="RM.Totalfree">
+		<result column="total_uid" property="totalUid" javaType="Integer" />
+		<result column="total_free" property="totalFree" javaType="Integer" />
+		<result column="total_des" property="totalDes" javaType="String" />
+		<result column="total_update_time" property="totalUpdateTime" javaType="Date" />
+	</resultMap>
+	
+	<resultMap type="TotalExpml" id="RM.TotalExpml">
+		<result column="total_free" property="totalFree" javaType="Integer" />
+		<result column="total_des" property="totalDes" javaType="String" />
+		<result column="total_update_time" property="totalUpdateTime" javaType="Date" />
+		<result column="user_nickname" property="userNickname" javaType="String" />
+	</resultMap>
+
+	<insert id="addEntity" parameterType="Totalfree">
+		insert into free_user_totalfree(totalUid,totalFree,totalDes,totalUpdateTime) values(#{totalUid},#{totalFree},#{totalDes},#{totalUpdateTime})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_user_totalfree set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Totalfree">
+		update free_user_totalfree set total_uid=#{totalUid},total_free=#{totalFree},total_des=#{totalDes},total_update_time=#{totalUpdateTime} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Totalfree" resultMap="RM.Totalfree">
+		select total_uid,total_free,total_des,total_update_tim from free_user_totalfree
+	</select>
+
+	<select id="findEntityList" parameterType="PageModel" resultMap="RM.TotalExpml">
+		select total_des,total_free,total_update_time,user_nickname from free_user_totalfree t, free_user_account a
+		where t.total_uid= a.id;
+	</select>
+
+	<select id="findPersonalTotal" parameterType="Integer" resultType="Integer">
+		select count(*) from free_user_totalfree where total_uid=#{uid};
+	</select>
+
+
+</mapper>

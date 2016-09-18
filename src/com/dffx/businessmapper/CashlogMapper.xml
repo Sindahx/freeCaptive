@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.CashlogMybatisDao">
+
+	<resultMap type="Cashlog" id="RM.Cashlog">
+		<result column="log_uid" property="logUid" javaType="Integer" />
+		<result column="log_pid" property="logPid" javaType="Integer" />
+		<result column="log_total" property="logTotal" javaType="Integer" />
+		<result column="log_cash" property="logCash" javaType="BigDecimal" />
+		<result column="log_create_time" property="logCreateTime" javaType="Date" />
+	</resultMap>
+
+	<insert id="addEntity" parameterType="Cashlog">
+		insert into free_log_cashlog(logUid,logPid,logTotal,logCash,logCreateTime) values(#{logUid},#{logPid},#{logTotal},#{logCash},#{logCreateTime})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_log_cashlog set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Cashlog">
+		update free_log_cashlog set log_uid=#{logUid},log_pid=#{logPid},log_total=#{logTotal},log_cash=#{logCash},log_create_time=#{logCreateTime} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Cashlog" resultMap="RM.Cashlog">
+		select log_uid,log_pid,log_total,log_cash,log_create_tim from free_log_cashlog
+	</select>
+
+	<select id="findEntityList" parameterType="PageModel" resultMap="RM.Cashlog">
+		select log_uid,log_pid,log_total,log_cash,log_create_tim from free_log_cashlog
+	</select>
+
+
+</mapper>

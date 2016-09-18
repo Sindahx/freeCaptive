@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.TotalfreeexampleMybatisDao">
+
+	<resultMap type="Totalfreeexample" id="RM.Totalfreeexample">
+		<result column="total_nickname" property="totalNickname" javaType="String" />
+		<result column="total_free" property="totalFree" javaType="Integer" />
+		<result column="total_des" property="totalDes" javaType="String" />
+		<result column="total_update_time" property="totalUpdateTime" javaType="Date" />
+	</resultMap>
+	
+	<resultMap type="TotalExpml" id="RM.TotalExpml2">
+		<result column="total_free" property="totalFree" javaType="Integer" />
+		<result column="total_des" property="totalDes" javaType="String" />
+		<result column="total_update_time" property="totalUpdateTime" javaType="Date" />
+		<result column="total_nickname" property="userNickname" javaType="String" />
+	</resultMap>
+
+	<insert id="addEntity" parameterType="Totalfreeexample">
+		insert into free_user_totalfreeexample(totalUid,totalFree,totalDes,totalUpdateTime) values(#{totalUid},#{totalFree},#{totalDes},#{totalUpdateTime})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_user_totalfreeexample set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Totalfreeexample">
+		update free_user_totalfreeexample set total_uid=#{totalUid},total_free=#{totalFree},total_des=#{totalDes},total_update_time=#{totalUpdateTime} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Totalfreeexample" resultMap="RM.Totalfreeexample">
+		select total_uid,total_free,total_des,total_update_time from free_user_totalfreeexample
+	</select>
+
+	<select id="findEntityListOutside" parameterType="PageModel" resultMap="RM.TotalExpml2">
+		select total_nickname,total_free,total_des,total_update_time from free_user_totalfreeexample;
+	</select>
+
+
+</mapper>

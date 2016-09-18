@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<!-- 别名 -->
+	<typeAliases >
+		<typeAlias type="com.dffx.pager.PageModel" alias="PageModel"/>
+		<typeAlias type="com.dffx.businessentry.Account" alias="Account"/>
+		<typeAlias type="com.dffx.businessentry.Cashlog" alias="Cashlog"/>
+		<typeAlias type="com.dffx.businessentry.Freelog" alias="Freelog"/>
+		<typeAlias type="com.dffx.businessentry.Meritetext" alias="Meritetext"/>
+		<typeAlias type="com.dffx.businessentry.Product" alias="Product"/>
+		<typeAlias type="com.dffx.businessentry.Totalfree" alias="Totalfree"/>
+		<typeAlias type="com.dffx.businessentry.Totalfreeexample" alias="Totalfreeexample"/>
+		<typeAlias type="com.dffx.businessentry.Advertisement" alias="Advertisement"/>
+		<typeAlias type="com.dffx.businessentry.dto.Total" alias="TotalExpml"/>
+		<typeAlias type="com.dffx.webservice.bean.response.FreeLogResponse" alias="FreeLogResponse"/>
+		
+		
+	</typeAliases>
+	<!-- 上线时关闭，调试的时候打印SQL使用。插件顺序不要调换 -->
+	<!--<plugins>
+		<plugin interceptor="com.dffx.utils.SQLInterceptor" />
+		<plugin interceptor="com.dffx.intercept.PaginationInterceptor">
+			
+				指定数据库分页方言Dialect,
+				其它方言:OracleDialect,SQLServerDialect,SybaseDialect,DB2Dialect,PostgreSQLDialect,MySQLDialect,DerbyDialect
+			
+			<property name="dialectClass"
+				value="cn.org.rapid_framework.jdbc.dialect.MySQLDialect" />
+		</plugin>
+	</plugins>-->
+
+</configuration> 

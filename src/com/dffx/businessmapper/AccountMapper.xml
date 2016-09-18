@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.AccountMybatisDao">
+
+	<resultMap type="Account" id="RM.Account">
+		<result column="user_name" property="userName" javaType="String" />
+		<result column="user_password" property="userPassword" javaType="String" />
+		<result column="user_nickname" property="userNickname" javaType="String" />
+		<result column="user_des" property="userDes" javaType="String" />
+	</resultMap>
+
+	<insert id="addEntity" parameterType="Account">
+		insert into free_user_account(userName,userPassword,userNickname,userDes) values(#{userName},#{userPassword},#{userNickname},#{userDes})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_user_account set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Account">
+		update free_user_account set user_name=#{userName},user_password=#{userPassword},user_nickname=#{userNickname},user_des=#{userDes} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Account" resultMap="RM.Account">
+		select user_name,user_password,user_nickname,user_des from free_user_account
+	</select>
+
+	<select id="findEntityList" parameterType="PageModel" resultMap="RM.Account">
+		select user_name,user_password,user_nickname,user_des from free_user_account
+	</select>
+	
+	<select id="findNickName" parameterType="Integer" resultMap="RM.Account">
+		select user_name,user_password,user_nickname,user_des from free_user_account where id=#{userUid}
+	</select>
+	
+	
+
+</mapper>

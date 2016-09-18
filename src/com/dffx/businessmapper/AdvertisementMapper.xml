@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.AdvertisementMybatisDao">
+
+	<resultMap type="Advertisement" id="RM.Advertisement">
+		<result column="content" property="content" javaType="String" />
+		<result column="createtime" property="createtime" javaType="Date" />
+		<result column="valid" property="valid" javaType="Integer" />
+	</resultMap>
+
+	<insert id="addEntity" parameterType="Advertisement">
+		insert into free_commom_advertisement(content,createtime,valid) values(#{content},#{createtime},#{valid})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_commom_advertisement set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Advertisement">
+		update free_commom_advertisement set content=#{content},createtime=#{createtime},valid=#{valid} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Advertisement" resultMap="RM.Advertisement">
+		select content,createtime,valid from free_commom_advertisement where valid =1;
+	</select>
+
+	<select id="findEntityList" parameterType="PageModel" resultMap="RM.Advertisement">
+		select content,createtime,valid from free_commom_advertisement
+	</select>
+
+
+</mapper>

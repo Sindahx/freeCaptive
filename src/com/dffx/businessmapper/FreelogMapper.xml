@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dffx.businessmapper.FreelogMybatisDao">
+
+	<resultMap type="Freelog" id="RM.Freelog">
+		<result column="log_uid" property="logUid" javaType="Integer" />
+		<result column="log_pid" property="logPid" javaType="Integer" />
+		<result column="log_total" property="logTotal" javaType="Integer" />
+		<result column="log_free_time" property="logFreeTime" javaType="Date" />
+	</resultMap>
+	
+	
+	<resultMap type="FreeLogResponse" id="RM.FreeLogResponse">
+		<result column="user_nickname" property="nickName" javaType="String" />
+		<result column="product_name" property="productName" javaType="String" />
+		<result column="log_free_time" property="freeTime" javaType="Date" />
+	</resultMap>
+	
+
+	<insert id="addEntity" parameterType="Freelog">
+		insert into free_log_freelog(logUid,logPid,logTotal,logFreeTime) values(#{logUid},#{logPid},#{logTotal},#{logFreeTime})
+	</insert>
+
+	<update id="deleteEntity" parameterType="long">
+		update free_log_freelog set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEntity" parameterType="Freelog">
+		update free_log_freelog set log_uid=#{logUid},log_pid=#{logPid},log_total=#{logTotal},log_free_time=#{logFreeTime} where id = #{id}
+	</update>
+
+	<select id="findEntity" parameterType="Freelog" resultMap="RM.Freelog">
+		select log_uid,log_pid,log_total,log_free_tim from free_log_freelog
+	</select>
+
+	<select id="findEntityList" parameterType="PageModel" resultMap="RM.FreeLogResponse">
+		select a.user_nickname, p.product_name,log_free_time from free_log_freelog l,free_user_account a, free_common_product p where log_uid=#{condition.logUid}
+		and a.id = l.log_uid
+		and p.id = l.log_pid
+	</select>
+
+
+</mapper>
