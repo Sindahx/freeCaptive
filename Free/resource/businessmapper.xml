@@ -18,16 +18,16 @@
       <bean id="dataSourceBusiness" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		 
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://192.168.1.123:3306/free_captive?useUnicode=true&amp;characterEncoding=utf8" />
+		<!--<property name="url" value="jdbc:mysql://192.168.1.123:3306/free_captive?useUnicode=true&amp;characterEncoding=utf8" />
 		<property name="username" value="root" />
 		<property name="password" value="12345" />
 		
-		<!--<property name="url" value="jdbc:mysql://121.201.36.80:43307/dffx_db_bs?useUnicode=true&amp;characterEncoding=utf8"/>
+		-->
+		<property name="url" value="jdbc:mysql://121.201.36.80:43307/free_captive?useUnicode=true&amp;characterEncoding=utf8"/>
 		<property name="username" value="dbapi1" /> 
 		<property name="password" value="e!*2016@dbapi" />
 		
-
-		--><!-- 配置初始化大小、最小、最大 -->
+		<!-- 配置初始化大小、最小、最大 -->
 		<property name="initialSize" value="10" />
 		<property name="minIdle" value="10" />
 		<property name="maxActive" value="100" />
